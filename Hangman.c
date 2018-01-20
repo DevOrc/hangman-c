@@ -3,14 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
-void checkDebug();
-char *getAnswer();
-char getGuess();
-int strcont(char*, char);
-void waitForEnter();
-
-int DEBUG = 0;
+#include "Hangman.h"
 
 int main(){
 	//Clear the screen
@@ -28,6 +21,8 @@ int main(){
 	int charsGuessed;
 	int correctGuesses;
 	char guess;
+	int lives = STARTING_LIVES;
+	int won = 0;
 
 	//Initialize Game
 	for(int i =0; i < strlen(answer); i++){
@@ -56,10 +51,12 @@ int main(){
 	printf("To Quit the game type';'\n");
 	printf("-----------------\n");
 
+	//Main game loop
 	while (running){
 		//Print out the current score  printf("%.*s\n", len, s + start);
 		printf("%.*s\n", answerlength, output);
 		printf("Guessed Letters: %.*s\n", charsGuessed, lettersGuessed);
+		printf("Lives: %d\n", lives);
 
 		// Get the guess from the user
 		while (1){
@@ -89,7 +86,8 @@ int main(){
 					output[i] = guess;
 			}
 		}else{
-			printf("Incorrect!\n");
+			printf("Incorrect! You have lost a life!\n");
+			lives--;
 		}
 
 		//Print debug info to the user
@@ -100,6 +98,13 @@ int main(){
 
 		//Win Condition
 		if(strcont(output, '_') == 0){
+			int won = 1;
+			break;
+		}
+
+		//Lose Condition
+		if(lives < 1){
+			won = -1;
 			break;
 		}
 
@@ -115,8 +120,14 @@ int main(){
 
 	//Show Game Ended Screen
 	system("cls");
-	printf("You have guessed correctly!\n");
-	printf("Answer: %s", answer);
+	if(won == 1){
+		printf("You have guessed correctly!\n");
+		printf("Answer: %s", answer);
+	}else if(won == -1){
+		printf("You have lost!\n");
+		printf("Answer: %s", answer);
+	}
+	
 	
 	//Wait for the user to quit
 	waitForEnter();
@@ -134,6 +145,7 @@ int strcont(char *str, char c){
 	return 0;
 }
 
+//Waits for enter to be pressed by the user
 void waitForEnter(){
 	char c;
 
@@ -181,7 +193,7 @@ char getGuess(){
 	}
 }
 
-// Get a ranom answer to guess
+// Get a random answer to guess
 char *getAnswer(){
 	srand(time(NULL));
 	int r = rand() % 10;
