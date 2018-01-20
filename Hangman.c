@@ -3,14 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
-void checkDebug();
-char *getAnswer();
-char getGuess();
-int strcont(char*, char);
-void waitForEnter();
-
-int DEBUG = 0;
+#include "Hangman.h"
 
 int main(){
 	//Clear the screen
