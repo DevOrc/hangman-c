@@ -49,6 +49,7 @@ int main(){
 	printf("To Quit the game type';'\n");
 	printf("-----------------\n");
 
+	//Main game loop
 	while (running){
 		//Print out the current score  printf("%.*s\n", len, s + start);
 		printf("%.*s\n", answerlength, output);
@@ -127,6 +128,7 @@ int strcont(char *str, char c){
 	return 0;
 }
 
+//Waits for enter to be pressed by the user
 void waitForEnter(){
 	char c;
 
@@ -174,7 +176,7 @@ char getGuess(){
 	}
 }
 
-// Get a ranom answer to guess
+// Get a random answer to guess
 char *getAnswer(){
 	srand(time(NULL));
 	int r = rand() % 10;
