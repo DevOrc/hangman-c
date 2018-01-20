@@ -4,13 +4,13 @@
 #include <string.h>
 #include <time.h>
 
-int DEBUG = 0;
-
 void checkDebug();
 char *getAnswer();
 char getGuess();
 int strcont(char*, char);
 void waitForEnter();
+
+int DEBUG = 0;
 
 int main(){
 	//Clear the screen
