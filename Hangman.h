@@ -5,4 +5,4 @@ int strcont(char*, char);
 void waitForEnter();
 
 int DEBUG = 0;
-int STARTING_LIVES = 5;
+int STARTING_LIVES = 10;
