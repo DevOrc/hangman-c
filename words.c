@@ -4,7 +4,7 @@
 #include <string.h>
 
 int WORD_LENGTH = 15;
-int NUM_OF_WORDS = 640;
+int NUM_OF_WORDS = 627;
 
 // Get a random answer to guess
 char *getAnswer(){
@@ -33,7 +33,7 @@ char *getAnswer(){
 	}
 
 	srand(time(NULL));
-	int r = rand() % 10;
+	int r = rand() % NUM_OF_WORDS;
 	char *output = malloc(WORD_LENGTH);  
 	strcpy(output, lines[r]);
 
