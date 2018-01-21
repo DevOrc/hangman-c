@@ -98,7 +98,7 @@ int main(){
 
 		//Win Condition
 		if(strcont(output, '_') == 0){
-			int won = 1;
+			won = 1;
 			break;
 		}
 
@@ -127,7 +127,6 @@ int main(){
 		printf("You have lost!\n");
 		printf("Answer: %s", answer);
 	}
-	
 	
 	//Wait for the user to quit
 	waitForEnter();
