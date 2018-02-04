@@ -7,7 +7,7 @@
 #include "settings.c"
 
 int main(){
-	//Clear the screen
+	//Clear the screengit
 	system("cls");
 
 	// Check if debug mode is enabled
@@ -128,7 +128,14 @@ int main(){
 	system("cls");
 	if(won == 1){
 		printf("You have guessed correctly!\n");
-		printf("Highscore: %d", HIGHSCORE);
+		printf("Highscore: %d\n", HIGHSCORE);
+
+		if(lives > HIGHSCORE){
+			printf("You beat the highscore!\n");
+			HIGHSCORE = lives;
+			saveSettings();
+		}
+
 		printf("Answer: %s", answer);
 	}else if(won == -1){
 		printf("You have lost!\n");

@@ -9,6 +9,25 @@ void splitSettingSet(char*, char*, char*);
 int indexOf(char*, char);
 void parseKeySet(char*, char*);
 
+void saveSettings(){
+    //Get the path of the settings file
+    char settingsPath[50]; 
+    getHangmanDir(settingsPath); 
+
+    //Open the file
+    FILE *fp;
+    fp = fopen (settingsPath,"w");
+
+    if (fp == NULL) {
+        printf ("File Error, errno = %d\n", errno);
+        exit(1);
+    }
+
+    fprintf(fp, "highscore=%d\n", HIGHSCORE);
+    fprintf(fp, "lives=%d\n", STARTING_LIVES);
+    fclose(fp);
+}
+
 void loadSettings() {
     //Get the path of the settings file
     char settingsPath[50]; 
@@ -37,7 +56,7 @@ void loadSettings() {
         //Parse the value
         parseKeySet(key, value);
     }
-    
+    fclose(fp);
 }
 
 void parseKeySet(char* key, char* val){
