@@ -13,16 +13,12 @@ int main(){
 	checkDebug();
 
 	// Initialize variables
-	int running = 1;
 	char* answer = getAnswer();
+	int answerlength = strlen(answer), lives = STARTING_LIVES;
+	int charsGuessed, correctGuesses, running = 1, won;
 	char lettersGuessed[26];
-	int answerlength = strlen(answer);
-	char output[answerlength]; 
-	int charsGuessed;
-	int correctGuesses;
 	char guess;
-	int lives = STARTING_LIVES;
-	int won = 0;
+	char output[answerlength]; 
 
 	//Initialize Game
 	for(int i =0; i < strlen(answer); i++){
