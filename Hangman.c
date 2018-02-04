@@ -174,7 +174,7 @@ char getGuess(){
 		if (isalpha(guess)){
 			return guess;
 		}else if (guess != '\n'){ // if its a newline just skip it
-			printf("Not a character!\n Guess another character!\n");
+			printf("Not a character!\nGuess another character!\n");
 		}
 	}
 }
