@@ -4,6 +4,7 @@
 #include <string.h>
 #include "Hangman.h"
 #include "words.c"
+#include "settings.c"
 
 int main(){
 	//Clear the screen
@@ -28,6 +29,8 @@ int main(){
 	for(int i =0; i < strlen(answer); i++){
 		output[i] = '_';
 	}
+
+	getHighScore();
 
 	// Print debug info to the user
 	if (DEBUG){
