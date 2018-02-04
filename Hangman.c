@@ -4,13 +4,17 @@
 #include <string.h>
 #include "Hangman.h"
 #include "words.c"
+#include "settings.c"
 
 int main(){
-	//Clear the screen
+	//Clear the screengit
 	system("cls");
 
 	// Check if debug mode is enabled
 	checkDebug();
+
+	//Load Settings
+	loadSettings();
 
 	// Initialize variables
 	char* answer = getAnswer();
@@ -28,6 +32,8 @@ int main(){
 	// Print debug info to the user
 	if (DEBUG){
 		printf("Answer: %s\n", answer);
+		printf("Highscore: %d\n", HIGHSCORE);
+		printf("Starting lives: %d\n", STARTING_LIVES);
 		printf("-----------------\n");
 	}
 
@@ -109,6 +115,14 @@ int main(){
 	system("cls");
 	if(won == 1){
 		printf("You have guessed correctly!\n");
+		printf("Highscore: %d\n", HIGHSCORE);
+
+		if(lives > HIGHSCORE){
+			printf("You beat the highscore!\n");
+			HIGHSCORE = lives;
+			saveSettings();
+		}
+
 		printf("Answer: %s", answer);
 	}else if(won == -1){
 		printf("You have lost!\n");

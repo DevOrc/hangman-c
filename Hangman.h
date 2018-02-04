@@ -7,3 +7,4 @@ void printInstructions();
 
 int DEBUG = 0;
 int STARTING_LIVES = 10;
+int HIGHSCORE = 0;
