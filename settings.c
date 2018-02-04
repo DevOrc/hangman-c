@@ -41,7 +41,10 @@ void loadSettings() {
         printf ("File Error, errno = %d\n", errno);
         exit(1);
     }
-    printf("Loaded Settings File!\n");
+
+    if(DEBUG){
+        printf("Loaded Settings File!\n");
+    }
 
     //Read the file
     char line[128];
