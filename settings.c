@@ -4,11 +4,16 @@
 #include <errno.h> 
 
 void getHangmanDir(char*); 
+void delLastCharacter(char*); 
+void splitSettingSet(char*, char*, char*);
+int indexOf(char*, char);
 
 void getHighScore() {
+    //Get the path of the settings file
     char settingsPath[50]; 
     getHangmanDir(settingsPath); 
 
+    //Open the file
     FILE *fp;
     fp = fopen (settingsPath,"r");
 
@@ -16,10 +21,62 @@ void getHighScore() {
         printf ("File Error, errno = %d\n", errno);
         exit(1);
     }
-    
     printf("Loaded Settings File!\n");
+
+    //Read the file
+    char line[128];
+    char key[64], value[64];
+
+    while (fgets(line, sizeof(line), fp)) {
+        delLastCharacter(line); //Remove the \n at the end of the line
+
+        //Parse the key set
+        splitSettingSet(line, key, value);
+        printf("key: %s\n", key);
+        printf("value: %s\n", value);
+    }
+    
 }
 
+//Splits a setting set into two parts
+//For instance if the setting set is 
+//lives=10 the key will be 'lives' and the
+//value would be '10'.
+void splitSettingSet(char* input, char* key, char* value){
+    int index = indexOf(input, '=');
+
+    //Add a null terminator at the end of the key
+    memset(key, '\0', index + 1);
+
+    //Copies the string 
+    strncpy(key, input, index);
+    
+    //Copies the value from the input
+    strcpy(value, input+index+1);
+}
+
+//Returns the first instance of character 'c' in the string 'input'
+//Returns -1 if the character isn't found
+int indexOf(char* input, char c){
+    int len = strlen(input);
+
+    for(int i = 0; i < len; i++){
+        if(input[i] == c)
+            return i;
+    }
+    return -1;
+}
+
+//Remove the last character from the string
+void delLastCharacter(char* string){
+    int len = strlen(string);
+    
+    if(len != 0){
+        string[len - 1] = '\0';
+    }
+}
+
+//Gets the path of the Hangman settings file
 void getHangmanDir(char * dir) {
     char * userprofile = getenv("USERPROFILE"); 
 
