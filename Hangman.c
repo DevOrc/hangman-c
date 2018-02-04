@@ -13,6 +13,9 @@ int main(){
 	// Check if debug mode is enabled
 	checkDebug();
 
+	//Load Settings
+	loadSettings();
+
 	// Initialize variables
 	int running = 1;
 	char* answer = getAnswer();
@@ -30,11 +33,11 @@ int main(){
 		output[i] = '_';
 	}
 
-	getHighScore();
-
 	// Print debug info to the user
 	if (DEBUG){
 		printf("Answer: %s\n", answer);
+		printf("Highscore: %d\n", HIGHSCORE);
+		printf("Starting lives: %d\n", STARTING_LIVES);
 		printf("-----------------\n");
 	}
 
@@ -125,6 +128,7 @@ int main(){
 	system("cls");
 	if(won == 1){
 		printf("You have guessed correctly!\n");
+		printf("Highscore: %d", HIGHSCORE);
 		printf("Answer: %s", answer);
 	}else if(won == -1){
 		printf("You have lost!\n");

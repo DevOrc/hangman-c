@@ -7,8 +7,9 @@ void getHangmanDir(char*);
 void delLastCharacter(char*); 
 void splitSettingSet(char*, char*, char*);
 int indexOf(char*, char);
+void parseKeySet(char*, char*);
 
-void getHighScore() {
+void loadSettings() {
     //Get the path of the settings file
     char settingsPath[50]; 
     getHangmanDir(settingsPath); 
@@ -30,12 +31,23 @@ void getHighScore() {
     while (fgets(line, sizeof(line), fp)) {
         delLastCharacter(line); //Remove the \n at the end of the line
 
-        //Parse the key set
+        //Split the key/value set
         splitSettingSet(line, key, value);
-        printf("key: %s\n", key);
-        printf("value: %s\n", value);
+
+        //Parse the value
+        parseKeySet(key, value);
     }
     
+}
+
+void parseKeySet(char* key, char* val){
+    if(strcmp(key, "highscore") == 0){
+        char *ptr;
+        HIGHSCORE = strtol(val, &ptr, 10);
+    }else if(strcmp(key, "lives") == 0){
+        char *ptr;
+        STARTING_LIVES = strtol(val, &ptr, 10);
+    }
 }
 
 //Splits a setting set into two parts
