@@ -36,20 +36,14 @@ int main(){
 	}
 
 	//Print Instructions to the user
-	printf("Welcome to Hangman!\n");
-	printf("You have 5 guesses to guess the correct answer!\n");
-	printf("To Quit the game type';'\n");
-	printf("Press 'Enter' to start! \n");
-	
+	printInstructions();
+
 	//Wait for the enter
 	waitForEnter();
 	system("cls");
 
 	//Reprint Instructions to the user
-	printf("Welcome to Hangman!\n");
-	printf("You have 5 guesses to guess the correct answer!\n");
-	printf("To Quit the game type';'\n");
-	printf("-----------------\n");
+	printInstructions();
 
 	//Main game loop
 	while (running){
@@ -112,10 +106,7 @@ int main(){
 		system("cls");
 
 		//Reprint Instructions to the user
-		printf("Welcome to Hangman!\n");
-		printf("You have 5 guesses to guess the correct answer!\n");
-		printf("To Quit the game type';'\n");
-		printf("-----------------\n");
+		printInstructions();
 	}
 
 	//Show Game Ended Screen
@@ -190,4 +181,11 @@ char getGuess(){
 			printf("Not a character!\n Guess another character!\n");
 		}
 	}
+}
+
+void printInstructions(){
+	printf("Welcome to Hangman!\n");
+	printf("You have 5 guesses to guess the correct answer!\n");
+	printf("To Quit the game type';'\n");
+	printf("-----------------\n");
 }
