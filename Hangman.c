@@ -19,7 +19,7 @@ int main(){
 	// Initialize variables
 	char* answer = getAnswer();
 	int answerlength = strlen(answer), lives = STARTING_LIVES;
-	int charsGuessed, correctGuesses, running = 1, won;
+	int charsGuessed = 0, correctGuesses = 0, running = 1, won = 0;
 	char lettersGuessed[26];
 	char guess;
 	char output[answerlength]; 
@@ -54,6 +54,12 @@ int main(){
 		printf("Guessed Letters: %.*s\n", charsGuessed, lettersGuessed);
 		printf("Lives: %d\n", lives);
 
+		//Print debug info to the user
+		if(DEBUG){
+			printf("Letters Guessed: %s\n", lettersGuessed);
+			printf("Chars Guessed: %d\n", charsGuessed);
+		}
+
 		// Get the guess from the user
 		while (1){
 			guess = toupper(getGuess());
@@ -66,7 +72,6 @@ int main(){
 				break;
 			}
 		}
-
 		//Add the letter guessed to the letters guessed
 		lettersGuessed[charsGuessed] = guess;
 		charsGuessed++;
@@ -84,12 +89,6 @@ int main(){
 		}else{
 			printf("Incorrect! You have lost a life!\n");
 			lives--;
-		}
-
-		//Print debug info to the user
-		if(DEBUG){
-			printf("Letters Guessed: %s\n", lettersGuessed);
-			printf("Chars Guessed: %d\n", charsGuessed);
 		}
 
 		//Win Condition
